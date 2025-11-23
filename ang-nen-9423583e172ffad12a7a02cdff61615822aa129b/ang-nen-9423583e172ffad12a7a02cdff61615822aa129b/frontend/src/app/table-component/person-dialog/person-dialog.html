@@ -1,0 +1,52 @@
+<div class="header">
+  <h2 mat-dialog-title>@if (update) {
+    {{data.person.vorname+" "+data.person.nachname+" "+data.person.id}}
+  } @else {
+    Neuer Eintrag
+  }</h2>
+</div>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Vorname</mat-label>
+      <input matInput formControlName="vorname" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Nachname</mat-label>
+      <input matInput formControlName="nachname" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Alter</mat-label>
+      <input matInput type="number" formControlName="alter" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Stadt</mat-label>
+      <input matInput formControlName="stadt" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Beruf</mat-label>
+      <input matInput formControlName="beruf" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Datum</mat-label>
+      <input matInput type="date" formControlName="datum" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-flat-button color="primary" (click)="save()">Speichern</button>
+</mat-dialog-actions>

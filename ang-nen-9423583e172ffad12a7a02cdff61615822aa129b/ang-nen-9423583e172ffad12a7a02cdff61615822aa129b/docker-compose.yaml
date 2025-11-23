@@ -1,0 +1,37 @@
+services:
+    frontend:
+      build: ./frontend
+      ports:
+        - "8080:80"
+      container_name: frontend_ANG
+      depends_on:
+        - db_ANG
+
+    nestjs-backend:
+      build: ./backend
+      container_name: backend_ANG
+      ports:
+        - "3000:3000"
+      environment:
+        NODE_ENV: production
+        DATABASE_HOST: db_ANG
+        DATABASE_PORT: 5432
+        DATABASE_USER: myuser
+        DATABASE_PASSWORD: nnV%LZyN@i946Z3Xx9
+        DATABASE_NAME: mydatabase
+        CORS_ORIGINS: http://frontend_ANG:8080
+      depends_on:
+        - db_ANG
+      command: npm run start:prod
+
+    db_ANG:
+      image: postgres:latest
+      container_name: db_ANG
+      environment:
+        POSTGRES_USER: myuser
+        POSTGRES_PASSWORD: nnV%LZyN@i946Z3Xx9
+        POSTGRES_DB: mydatabase
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./init:/docker-entrypoint-initdb.d
